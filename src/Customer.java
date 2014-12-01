@@ -1,6 +1,6 @@
 
 
-public class Customer
+public class Customer implements Comparable<Customer>
 {
     private int ID;
     private String customerType;
@@ -15,7 +15,7 @@ public class Customer
     private int checkoutQueueTotalWaitTime;
     private int checkoutServiceArrivalTime;
     private int checkoutServiceTotalWaitTime;
-    private int systemTotalWaitTime;
+    private int systemTotalTime;
     private int systemExitTime;
 
     public Customer(int ID, String customerType, int systemArrivalTime)
@@ -155,14 +155,14 @@ public class Customer
         this.checkoutServiceTotalWaitTime = checkoutServiceTotalWaitTime;
     }
 
-    public int getSystemTotalWaitTime()
+    public int getSystemTotalTime()
     {
-        return systemTotalWaitTime;
+        return systemTotalTime;
     }
 
-    public void setSystemTotalWaitTime(int systemTotalWaitTime)
+    public void setSystemTotalTime(int systemTotalTime)
     {
-        this.systemTotalWaitTime = systemTotalWaitTime;
+        this.systemTotalTime = systemTotalTime;
     }
 
     public int getSystemExitTime()
@@ -173,5 +173,11 @@ public class Customer
     public void setSystemExitTime(int systemExitTime)
     {
         this.systemExitTime = systemExitTime;
+    }
+
+    @Override
+    public int compareTo(Customer thatCustomer)
+    {
+        return this.getCheckoutQueueArrivalTime() - thatCustomer.getCheckoutQueueArrivalTime();
     }
 }

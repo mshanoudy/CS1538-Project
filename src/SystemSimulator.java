@@ -1,3 +1,4 @@
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -6,6 +7,7 @@ public class SystemSimulator
     private ArrayList<Customer> customerList;   // List of customers in the system
     private ArrayList<Customer> MTGList;
     private ArrayList<Customer> QZList;
+    private ArrayList<Customer> checkoutList;
 
     private int totalHours;
 
@@ -15,20 +17,44 @@ public class SystemSimulator
         this.totalHours   = totalRunTime * 3600;
         this.MTGList    = new ArrayList<>();
         this.QZList     = new ArrayList<>();
+        this.checkoutList = new ArrayList<>();
     }
 
     public void runSimulation()
     {
+        // Generate initial customer list
         generateCustomerArrivalTimes();
+        // Separate the customers by type
         seperateList();
 
+        // Create customer queues by type
+        ProjectServer MTGServer = new ProjectServer("MTG", MTGList);
+        ArrayDeque<Customer> MTGQueue = MTGServer.process();
+        ProjectServer QZServer = new ProjectServer("QZ", QZList);
+        ArrayDeque<Customer> QZQueue = QZServer.process();
+
+        // Make checkout List
+        createCheckoutList(MTGQueue, QZQueue);
+
+        ProjectServer checkoutServer = new ProjectServer("CHECKOUT", checkoutList);
     }
 
-    private void processMTG()
+    private void createCheckoutList(ArrayDeque<Customer> MTGQueue, ArrayDeque<Customer> QZQueue)
     {
-        ProjectServer MTGServer = new ProjectServer("MTG", MTGList);
-
-
+        while (!MTGQueue.isEmpty() || !QZQueue.isEmpty())
+        {
+            if (!MTGQueue.isEmpty() && !QZQueue.isEmpty())
+            {// If both are not empty
+                if (MTGQueue.peek().getCheckoutQueueArrivalTime() < QZQueue.peek().getCheckoutQueueArrivalTime())
+                    checkoutList.add(MTGQueue.removeFirst());
+                else
+                    checkoutList.add(QZQueue.removeFirst());
+            }// QZ is empty
+            else if (!MTGQueue.isEmpty() && QZQueue.isEmpty())
+                checkoutList.add(MTGQueue.removeFirst());
+            else // MTG is empty
+                checkoutList.add(QZQueue.removeFirst());
+        }
     }
 
     private void seperateList()
@@ -44,9 +70,6 @@ public class SystemSimulator
             }
             else
             {// TODO: Make this random not hardcoded
-                customer.setItemTotal(5);
-                customer.setItemSelectTime(5 * 60);
-                customer.setCheckoutQueueArrivalTime(customer.getSystemArrivalTime() + customer.getItemSelectTime());
                 QZList.add(customer);
             }
         }

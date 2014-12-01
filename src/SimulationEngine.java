@@ -1,43 +1,99 @@
+import java.io.*;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * SimulationEngine is responsible for running the basic QuickZone simulation
+ */
 public class SimulationEngine
 {
     private final int HOUR_OFFSET = 3600;
 
-    DistributionGenerator distributionGenerator;
+    DistributionGenerator distributionGenerator; // Used for storing and utilizing statistical functions
 
+    /**
+     * Default Constructor
+     */
     public SimulationEngine()
     {
         distributionGenerator = new DistributionGenerator();
     }
 
+    /**
+     * Runs the basic QuickZone simulation
+     *
+     * @param totalHours The total number of hours this simulation is to run for
+     */
     public void runSimulation(int totalHours)
     {
+        ArrayList<Customer>  customers;     // List of customers as they arrive in system
+        ArrayList<Customer>  checkoutList;  // List of customers as they leave the system
+        ArrayDeque<Customer> mtgQueue;      // Processed queue from MTG
+        ArrayDeque<Customer> qzQueue;       // Processed queue from QZ
+
         MTGServer mtgServer = new MTGServer();
         QZServer  qzServer  = new QZServer();
         CheckoutServer checkoutServer = new CheckoutServer();
 
-        // Generate customer arrival list
-        ArrayList<Customer> customers = createArrivalList(totalHours);
+        customers = createArrivalList(totalHours); // Populate customers list
 
-        // Separate customers by type
         for (Customer customer : customers)
-        {
-            if (customer.getCustomerType().equals("MTG"))
+        {// Send customers to respective servers, MTG or QZ
+            if (customer.getType().equals("MTG"))
                 mtgServer.add(customer);
             else
                 qzServer.add(customer);
         }
 
-        // Process the queues
-        ArrayDeque<Customer> mtgQueue = mtgServer.processQueue();
-        ArrayDeque<Customer> qzQueue  = qzServer.processQueue();
+        mtgQueue = mtgServer.processQueue();
+        qzQueue  = qzServer.processQueue();
 
-        // Merge queues into a list and process checkout list
-        checkoutServer.add(mergeQueues(mtgQueue, qzQueue));
-        ArrayList<Customer> checkoutList = checkoutServer.processList();
+        checkoutServer.add(mergeQueues(mtgQueue, qzQueue)); // Merge queues into a a single list
+
+        checkoutList = checkoutServer.processList();
+
+        saveToFile(checkoutList);
+    }
+
+    private void saveToFile(ArrayList<Customer> customers)
+    {
+        try
+        {
+            Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("output.txt"), "utf-8"));
+
+            int index = 0;
+            for (Customer customer : customers)
+            {
+                String type  = customer.getType();
+                int ID       = customer.getID();
+                int sysAT    = customer.getSystemArrivalTime();
+                int items    = customer.getItemTotal();
+                int select   = customer.getItemSelectTime();
+                int QAT      = customer.getQueueArrivalTime();
+                int QWT      = customer.getQueueWaitTime();
+                int SAT      = customer.getServerArrivalTime();
+                int SWT      = customer.getServiceWaitTime();
+                int CQAT     = customer.getCheckoutQueueArrivalTime();
+                int CQWT     = customer.getCheckoutQueueWaitTime();
+                int CSAT     = customer.getCheckoutServerArrivalTime();
+                int CSWT     = customer.getCheckoutServiceWaitTime();
+                int sysTT    = customer.getSystemTotalTime();
+                int sysET    = customer.getSystemExitTime();
+
+                writer.write("[" + index + "]: " + ID + " " + type + " " + sysAT + " " + items + " " + select + " " +
+                            QAT + " " + QWT + " " + SAT + " " + SWT + " " + CQAT + " " + CQWT + " " + CSAT + " " +
+                            CSWT + " " + sysTT + " " + sysET + "\n");
+
+                index++;
+            }
+            writer.close();
+        }
+        catch (IOException e)
+        {
+            System.out.println("** ERROR WRITING TO FILE **");
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -79,7 +135,7 @@ public class SimulationEngine
     /**
      * Creates the customer list in chronological order based on arrival times for some number of hours
      *
-     * @param totalHours The total number of hours the simulation is run for
+     * @param totalHours The total number of hours the simulation is to run for
      *
      * @return An ArrayList containing the list of customers by arrival time for some number of hours
      */
@@ -100,7 +156,7 @@ public class SimulationEngine
             for (int index = 0; index < customersThisHour; index++)
             {
                 currentCustomer = new Customer(customerID);
-                currentCustomer.setCustomerType(randomCustomerType());
+                currentCustomer.setType(randomCustomerType());
                 currentCustomer.setSystemArrivalTime((hour * HOUR_OFFSET) + arrivalTimesThisHour[index]);
                 customerArrayList.add(currentCustomer);
                 customerID++;

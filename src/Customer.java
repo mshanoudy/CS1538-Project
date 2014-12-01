@@ -2,7 +2,7 @@
 public class Customer implements Comparable<Customer>
 {
     private int ID;
-    private String customerType;
+    private String type;
     private int systemArrivalTime;
     private int itemTotal;
     private int itemSelectTime;
@@ -22,11 +22,10 @@ public class Customer implements Comparable<Customer>
         this.ID = ID;
     }
 
-    public Customer(int ID, String customerType, int systemArrivalTime)
+    @Override
+    public int compareTo(Customer thatCustomer)
     {
-        this.ID = ID;
-        this.customerType = customerType;
-        this.systemArrivalTime = systemArrivalTime;
+        return this.getCheckoutQueueArrivalTime() - thatCustomer.getCheckoutQueueArrivalTime();
     }
 
     public int getID()
@@ -39,14 +38,14 @@ public class Customer implements Comparable<Customer>
         this.ID = ID;
     }
 
-    public String getCustomerType()
+    public String getType()
     {
-        return customerType;
+        return type;
     }
 
-    public void setCustomerType(String customerType)
+    public void setType(String type)
     {
-        this.customerType = customerType;
+        this.type = type;
     }
 
     public int getSystemArrivalTime()
@@ -179,9 +178,5 @@ public class Customer implements Comparable<Customer>
         this.systemExitTime = systemExitTime;
     }
 
-    @Override
-    public int compareTo(Customer thatCustomer)
-    {
-        return this.getCheckoutQueueArrivalTime() - thatCustomer.getCheckoutQueueArrivalTime();
-    }
+
 }

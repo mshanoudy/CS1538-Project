@@ -11,6 +11,7 @@ public class Customer
 	private String location;				//TBD-
 	private String custType;				//"mtg" or "qz"
 
+
 	public Customer()
 	{
 		this.id = custInst;

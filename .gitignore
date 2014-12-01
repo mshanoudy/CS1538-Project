@@ -221,4 +221,10 @@ IntelliJ
 .idea/
 .idea/workspace.xml
 .idea/misc.xml
+<<<<<<< HEAD
+=======
+
+.idea/misc.xml
+
+>>>>>>> origin/master
 .idea/workspace.xml

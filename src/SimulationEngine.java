@@ -2,6 +2,7 @@ import java.io.*;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Formatter;
 
 /**
  * SimulationEngine is responsible for running the basic QuickZone simulation
@@ -56,11 +57,22 @@ public class SimulationEngine
         saveToFile(checkoutList);
     }
 
+
+    /**
+     * Saves output to a file
+     *
+     * @param customers The list of customers to print
+     */
     private void saveToFile(ArrayList<Customer> customers)
     {
         try
         {
             Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("output.txt"), "utf-8"));
+
+
+            writer.write(String.format("%-8s %-8s %-8s %-8s %-8s %-8s %-8s %-8s %-8s %-8s %-8s %-8s %-8s %-8s %-8s %-8s\n\n",
+                             "INDEX", "TYPE", "ID", "SYS AT", "# ITEMS", "SELECT T", "QAT", "QWT", "SAT", "SWT", "CQAT",
+                             "CQWT", "CSAT", "CSWT", "SYS TT", "SYS ET"));
 
             int index = 0;
             for (Customer customer : customers)
@@ -81,9 +93,8 @@ public class SimulationEngine
                 int sysTT    = customer.getSystemTotalTime();
                 int sysET    = customer.getSystemExitTime();
 
-                writer.write("[" + index + "]: " + ID + " " + type + " " + sysAT + " " + items + " " + select + " " +
-                            QAT + " " + QWT + " " + SAT + " " + SWT + " " + CQAT + " " + CQWT + " " + CSAT + " " +
-                            CSWT + " " + sysTT + " " + sysET + "\n");
+                writer.write(String.format("%-8d %-8s %-8d %-8d %-8d %-8d %-8d %-8d %-8d %-8d %-8d %-8d %-8d %-8d %-8d %-8d\n",
+                                 index, type, ID, sysAT, items, select, QAT, QWT, SAT, SWT, CQAT, CQWT, CSAT, CSWT, sysTT, sysET));
 
                 index++;
             }

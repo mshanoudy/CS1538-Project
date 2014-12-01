@@ -11,10 +11,10 @@ public class SystemSimulator
 
     private int totalHours;
 
-    public SystemSimulator(int totalRunTime)
+    public SystemSimulator(int totalHours)
     {
         this.customerList = new ArrayList<>();
-        this.totalHours   = totalRunTime * 3600;
+        this.totalHours   = totalHours;
         this.MTGList    = new ArrayList<>();
         this.QZList     = new ArrayList<>();
         this.checkoutList = new ArrayList<>();
@@ -37,6 +37,15 @@ public class SystemSimulator
         createCheckoutList(MTGQueue, QZQueue);
 
         ProjectServer checkoutServer = new ProjectServer("CHECKOUT", checkoutList);
+        ArrayDeque<Customer> checkoutQueue = checkoutServer.process();
+
+       Customer temp;
+       for (Customer customer : customerList)
+       {
+           temp = checkoutQueue.removeFirst();
+
+           System.out.println("ID: " + temp.getID() + ", Type: " + temp.getCustomerType());
+       }
     }
 
     private void createCheckoutList(ArrayDeque<Customer> MTGQueue, ArrayDeque<Customer> QZQueue)
@@ -113,5 +122,11 @@ public class SystemSimulator
         for (int x = 0; x < numberOfArrivals; x++)
             arrivalTimes[x] = x * gap;
         return arrivalTimes;
+    }
+
+    public static void main(String args[])
+    {
+        SystemSimulator systemSimulator = new SystemSimulator(1);
+        systemSimulator.runSimulation();
     }
 }

@@ -71,6 +71,7 @@ public class ProjectServer
             customer.setCheckoutServiceTotalWaitTime(customer.getItemTotal() * 30); // TODO: change 30 to a random number
             customer.setSystemExitTime(customer.getCheckoutServiceArrivalTime() + customer.getCheckoutServiceTotalWaitTime());
             customer.setSystemTotalTime(customer.getSystemExitTime() - customer.getSystemArrivalTime());
+            previousExitTime = customer.getSystemExitTime();
         }
 
         return new ArrayDeque<>(customerList);

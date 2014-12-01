@@ -7,6 +7,7 @@ import java.util.*;
 
 public class SimDriver
 {
+    /**
 	public static void main(String[] args) 
 	{
 		// Customer one = new Customer(1.0);
@@ -101,5 +102,5 @@ public class SimDriver
 		return number;
 	
 	}
-	
+	*/
 }

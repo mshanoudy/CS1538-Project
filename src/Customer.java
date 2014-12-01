@@ -2,7 +2,7 @@
 
 public class Customer
 {
-    private String ID;
+    private int ID;
     private String customerType;
     private int systemArrivalTime;
     private int itemTotal;
@@ -18,17 +18,19 @@ public class Customer
     private int systemTotalWaitTime;
     private int systemExitTime;
 
-    public Customer()
+    public Customer(int ID, String customerType, int systemArrivalTime)
     {
-
+        this.ID = ID;
+        this.customerType = customerType;
+        this.systemArrivalTime = systemArrivalTime;
     }
 
-    public String getID()
+    public int getID()
     {
         return ID;
     }
 
-    public void setID(String ID)
+    public void setID(int ID)
     {
         this.ID = ID;
     }

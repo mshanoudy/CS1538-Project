@@ -1,79 +1,175 @@
-//Steven Ross
-//smr77@pitt.edu
 
 
 public class Customer
 {
-	private static int custInst = 0;			//Used to give unique id to each created cust--Could just use id but more clear to have different vars
-	private int id;
-	private double arrivalTime;
-	private double exitTime;
-	private String location;				//TBD-
-	private String custType;				//"mtg" or "qz"
+    private String ID;
+    private String customerType;
+    private int systemArrivalTime;
+    private int itemTotal;
+    private int itemSelectTime;
+    private int MTGQueueArrivalTime;
+    private int MTGQueueTotalWaitTime;
+    private int MTGServiceArrivalTime;
+    private int MTGServiceTotalWaitTime;
+    private int checkoutQueueArrivalTime;
+    private int checkoutQueueTotalWaitTime;
+    private int checkoutServiceArrivalTime;
+    private int checkoutServiceTotalWaitTime;
+    private int systemTotalWaitTime;
+    private int systemExitTime;
 
+    public Customer()
+    {
 
-	public Customer()
-	{
-		this.id = custInst;
-		custInst++;
-	}
-	
-	public Customer(double time)
-	{
-		this.id = custInst;
-		custInst++;
-		
-		this.arrivalTime = time;
-	}
+    }
 
-	public double getArrivalTime()
-	{
-		return this.arrivalTime;
-	}
-	
-	public void setArrivalTime(double time)
-	{
-		this.arrivalTime = time;
-	}
-	
-	public int getId()
-	{
-		return this.id;
-	}
-	
-	public void setExitTime(double time)
-	{
-		this.exitTime = time;
-	}
-	
-	public double getExitTime()
-	{
-		return this.exitTime;
-	}
-	
-	public String getLocation()
-	{
-		return this.location;
-	}
-	
-	public void setLocation(String l)
-	{
-		this.location = l;
-	}
-	
-	public String getCustType()
-	{
-		return this.custType;
-	}
-	
-	public void setCustType(String x )
-	{
-		this.custType = x;
-	}
-	
-	public double calcTotalTimeSys()
-	{
-		return this.exitTime - this.arrivalTime;
-	}
+    public String getID()
+    {
+        return ID;
+    }
 
+    public void setID(String ID)
+    {
+        this.ID = ID;
+    }
+
+    public String getCustomerType()
+    {
+        return customerType;
+    }
+
+    public void setCustomerType(String customerType)
+    {
+        this.customerType = customerType;
+    }
+
+    public int getSystemArrivalTime()
+    {
+        return systemArrivalTime;
+    }
+
+    public void setSystemArrivalTime(int systemArrivalTime)
+    {
+        this.systemArrivalTime = systemArrivalTime;
+    }
+
+    public int getItemTotal()
+    {
+        return itemTotal;
+    }
+
+    public void setItemTotal(int itemTotal)
+    {
+        this.itemTotal = itemTotal;
+    }
+
+    public int getItemSelectTime()
+    {
+        return itemSelectTime;
+    }
+
+    public void setItemSelectTime(int itemSelectTime)
+    {
+        this.itemSelectTime = itemSelectTime;
+    }
+
+    public int getMTGQueueArrivalTime()
+    {
+        return MTGQueueArrivalTime;
+    }
+
+    public void setMTGQueueArrivalTime(int MTGQueueArrivalTime)
+    {
+        this.MTGQueueArrivalTime = MTGQueueArrivalTime;
+    }
+
+    public int getMTGQueueTotalWaitTime()
+    {
+        return MTGQueueTotalWaitTime;
+    }
+
+    public void setMTGQueueTotalWaitTime(int MTGQueueTotalWaitTime)
+    {
+        this.MTGQueueTotalWaitTime = MTGQueueTotalWaitTime;
+    }
+
+    public int getMTGServiceArrivalTime()
+    {
+        return MTGServiceArrivalTime;
+    }
+
+    public void setMTGServiceArrivalTime(int MTGServiceArrivalTime)
+    {
+        this.MTGServiceArrivalTime = MTGServiceArrivalTime;
+    }
+
+    public int getMTGServiceTotalWaitTime()
+    {
+        return MTGServiceTotalWaitTime;
+    }
+
+    public void setMTGServiceTotalWaitTime(int MTGServiceTotalWaitTime)
+    {
+        this.MTGServiceTotalWaitTime = MTGServiceTotalWaitTime;
+    }
+
+    public int getCheckoutQueueArrivalTime()
+    {
+        return checkoutQueueArrivalTime;
+    }
+
+    public void setCheckoutQueueArrivalTime(int checkoutQueueArrivalTime)
+    {
+        this.checkoutQueueArrivalTime = checkoutQueueArrivalTime;
+    }
+
+    public int getCheckoutQueueTotalWaitTime()
+    {
+        return checkoutQueueTotalWaitTime;
+    }
+
+    public void setCheckoutQueueTotalWaitTime(int checkoutQueueTotalWaitTime)
+    {
+        this.checkoutQueueTotalWaitTime = checkoutQueueTotalWaitTime;
+    }
+
+    public int getCheckoutServiceArrivalTime()
+    {
+        return checkoutServiceArrivalTime;
+    }
+
+    public void setCheckoutServiceArrivalTime(int checkoutServiceArrivalTime)
+    {
+        this.checkoutServiceArrivalTime = checkoutServiceArrivalTime;
+    }
+
+    public int getCheckoutServiceTotalWaitTime()
+    {
+        return checkoutServiceTotalWaitTime;
+    }
+
+    public void setCheckoutServiceTotalWaitTime(int checkoutServiceTotalWaitTime)
+    {
+        this.checkoutServiceTotalWaitTime = checkoutServiceTotalWaitTime;
+    }
+
+    public int getSystemTotalWaitTime()
+    {
+        return systemTotalWaitTime;
+    }
+
+    public void setSystemTotalWaitTime(int systemTotalWaitTime)
+    {
+        this.systemTotalWaitTime = systemTotalWaitTime;
+    }
+
+    public int getSystemExitTime()
+    {
+        return systemExitTime;
+    }
+
+    public void setSystemExitTime(int systemExitTime)
+    {
+        this.systemExitTime = systemExitTime;
+    }
 }

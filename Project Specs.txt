@@ -9,9 +9,11 @@ Customer Class (Getters and Setters)
 - Int: MTG service start time
 - Int: MTG service total time
 - Int: Checkout start time		
-- Int: Checkout queue total time		
+- Int: Checkout queue total time
+- Int; Checkout service start time
 - Int: Checkout service time		
 - Int: Total Time
+- Int: Exit time from system
 
 Interface Server Class
 - void process(Customer customer)
@@ -19,6 +21,3 @@ Interface Server Class
 	- Calculates service time
 	- Updates customer service time
 
-
-		
-	

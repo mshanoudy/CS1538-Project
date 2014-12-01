@@ -21,3 +21,7 @@ Interface Server Class
 	- Calculates service time
 	- Updates customer service time
 
+
+Quickzone hours: 10am - 11pm, Monday - Sunday
+Market to go hours: ??
+

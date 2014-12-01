@@ -1,5 +1,4 @@
 
-
 public class Customer implements Comparable<Customer>
 {
     private int ID;
@@ -7,16 +6,21 @@ public class Customer implements Comparable<Customer>
     private int systemArrivalTime;
     private int itemTotal;
     private int itemSelectTime;
-    private int MTGQueueArrivalTime;
-    private int MTGQueueTotalWaitTime;
-    private int MTGServiceArrivalTime;
-    private int MTGServiceTotalWaitTime;
+    private int queueArrivalTime;
+    private int queueWaitTime;
+    private int serverArrivalTime;
+    private int serviceWaitTime;
     private int checkoutQueueArrivalTime;
-    private int checkoutQueueTotalWaitTime;
-    private int checkoutServiceArrivalTime;
-    private int checkoutServiceTotalWaitTime;
+    private int checkoutQueueWaitTime;
+    private int checkoutServerArrivalTime;
+    private int checkoutServiceWaitTime;
     private int systemTotalTime;
     private int systemExitTime;
+
+    public Customer(int ID)
+    {
+        this.ID = ID;
+    }
 
     public Customer(int ID, String customerType, int systemArrivalTime)
     {
@@ -75,44 +79,44 @@ public class Customer implements Comparable<Customer>
         this.itemSelectTime = itemSelectTime;
     }
 
-    public int getMTGQueueArrivalTime()
+    public int getQueueArrivalTime()
     {
-        return MTGQueueArrivalTime;
+        return queueArrivalTime;
     }
 
-    public void setMTGQueueArrivalTime(int MTGQueueArrivalTime)
+    public void setQueueArrivalTime(int queueArrivalTime)
     {
-        this.MTGQueueArrivalTime = MTGQueueArrivalTime;
+        this.queueArrivalTime = queueArrivalTime;
     }
 
-    public int getMTGQueueTotalWaitTime()
+    public int getQueueWaitTime()
     {
-        return MTGQueueTotalWaitTime;
+        return queueWaitTime;
     }
 
-    public void setMTGQueueTotalWaitTime(int MTGQueueTotalWaitTime)
+    public void setQueueWaitTime(int queueWaitTime)
     {
-        this.MTGQueueTotalWaitTime = MTGQueueTotalWaitTime;
+        this.queueWaitTime = queueWaitTime;
     }
 
-    public int getMTGServiceArrivalTime()
+    public int getServerArrivalTime()
     {
-        return MTGServiceArrivalTime;
+        return serverArrivalTime;
     }
 
-    public void setMTGServiceArrivalTime(int MTGServiceArrivalTime)
+    public void setServerArrivalTime(int serverArrivalTime)
     {
-        this.MTGServiceArrivalTime = MTGServiceArrivalTime;
+        this.serverArrivalTime = serverArrivalTime;
     }
 
-    public int getMTGServiceTotalWaitTime()
+    public int getServiceWaitTime()
     {
-        return MTGServiceTotalWaitTime;
+        return serviceWaitTime;
     }
 
-    public void setMTGServiceTotalWaitTime(int MTGServiceTotalWaitTime)
+    public void setServiceWaitTime(int serviceWaitTime)
     {
-        this.MTGServiceTotalWaitTime = MTGServiceTotalWaitTime;
+        this.serviceWaitTime = serviceWaitTime;
     }
 
     public int getCheckoutQueueArrivalTime()
@@ -125,34 +129,34 @@ public class Customer implements Comparable<Customer>
         this.checkoutQueueArrivalTime = checkoutQueueArrivalTime;
     }
 
-    public int getCheckoutQueueTotalWaitTime()
+    public int getCheckoutQueueWaitTime()
     {
-        return checkoutQueueTotalWaitTime;
+        return checkoutQueueWaitTime;
     }
 
-    public void setCheckoutQueueTotalWaitTime(int checkoutQueueTotalWaitTime)
+    public void setCheckoutQueueWaitTime(int checkoutQueueWaitTime)
     {
-        this.checkoutQueueTotalWaitTime = checkoutQueueTotalWaitTime;
+        this.checkoutQueueWaitTime = checkoutQueueWaitTime;
     }
 
-    public int getCheckoutServiceArrivalTime()
+    public int getCheckoutServerArrivalTime()
     {
-        return checkoutServiceArrivalTime;
+        return checkoutServerArrivalTime;
     }
 
-    public void setCheckoutServiceArrivalTime(int checkoutServiceArrivalTime)
+    public void setCheckoutServerArrivalTime(int checkoutServerArrivalTime)
     {
-        this.checkoutServiceArrivalTime = checkoutServiceArrivalTime;
+        this.checkoutServerArrivalTime = checkoutServerArrivalTime;
     }
 
-    public int getCheckoutServiceTotalWaitTime()
+    public int getCheckoutServiceWaitTime()
     {
-        return checkoutServiceTotalWaitTime;
+        return checkoutServiceWaitTime;
     }
 
-    public void setCheckoutServiceTotalWaitTime(int checkoutServiceTotalWaitTime)
+    public void setCheckoutServiceWaitTime(int checkoutServiceWaitTime)
     {
-        this.checkoutServiceTotalWaitTime = checkoutServiceTotalWaitTime;
+        this.checkoutServiceWaitTime = checkoutServiceWaitTime;
     }
 
     public int getSystemTotalTime()

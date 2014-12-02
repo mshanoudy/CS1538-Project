@@ -1,11 +1,15 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 public class ServerQueue
 {
+    protected Random random;
     protected ArrayList<Customer> customers;
+
 
     public ServerQueue()
     {
+        random    = new Random();
         customers = new ArrayList<>();
     }
 

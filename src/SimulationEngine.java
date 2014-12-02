@@ -2,23 +2,23 @@ import java.io.*;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Formatter;
+import java.util.Random;
 
 /**
  * SimulationEngine is responsible for running the basic QuickZone simulation
  */
 public class SimulationEngine
 {
-    private final int HOUR_OFFSET = 3600;
+    private final int SECONDS_IN_HOUR = 3600;
 
-    DistributionGenerator distributionGenerator; // Used for storing and utilizing statistical functions
+    private Random random;
 
     /**
      * Default Constructor
      */
     public SimulationEngine()
     {
-        distributionGenerator = new DistributionGenerator();
+        random = new Random();
     }
 
     /**
@@ -151,24 +151,24 @@ public class SimulationEngine
      * @return An ArrayList containing the list of customers by arrival time for some number of hours
      */
     private ArrayList<Customer> createArrivalList(int totalHours)
-    {
+    {// TODO: The number of customers per hour is currently uniformly distributed, may need changing
         int customerID = 0;
-        int customersThisHour;      // Number of customers this hour
-        int arrivalTimesThisHour[]; // Array of arrival times for each customer relative to a certain hour
-        Customer currentCustomer;   // The current customer
+        int customersThisHour;
+        int arrivalsThisHour[];
+        Customer currentCustomer;
 
         ArrayList<Customer> customerArrayList = new ArrayList<>();
 
         for (int hour = 0; hour < totalHours; hour++)
         {
-            customersThisHour = 50; // TODO: Replace hardcoded value of 50 with a distributed value from DistributionGenerator
-            arrivalTimesThisHour = createArrivalTimesThisHour(customersThisHour);
+            customersThisHour = random.nextInt(100) + 50;
+            arrivalsThisHour  = createArrivalTimesThisHour(customersThisHour);
 
             for (int index = 0; index < customersThisHour; index++)
             {
                 currentCustomer = new Customer(customerID);
-                currentCustomer.setType(randomCustomerType());
-                currentCustomer.setSystemArrivalTime((hour * HOUR_OFFSET) + arrivalTimesThisHour[index]);
+                currentCustomer.setType(getRandomCustomerType());
+                currentCustomer.setSystemArrivalTime((hour * SECONDS_IN_HOUR) + arrivalsThisHour[index]);
                 customerArrayList.add(currentCustomer);
                 customerID++;
             }
@@ -186,12 +186,11 @@ public class SimulationEngine
      * @return Array of arrival times relative to an hour
      */
     private int[] createArrivalTimesThisHour(int customersThisHour)
-    {
-        int gap = 3600 / customersThisHour;
+    {// TODO: Arrival times are currently generated using a uniform distribution, may need changing
         int arrivalTimes[] = new int[customersThisHour];
 
         for (int x = 0; x < customersThisHour; x++)
-            arrivalTimes[x] = x * gap;  // TODO: Replace with a random value for each individual gap
+            arrivalTimes[x] = random.nextInt(SECONDS_IN_HOUR);
         Arrays.sort(arrivalTimes);
 
         return arrivalTimes;
@@ -202,9 +201,9 @@ public class SimulationEngine
      *
      * @return The type of customer
      */
-    private String randomCustomerType()
-    {
-        if (distributionGenerator.generateNextUniform() > 0.7) // TODO: Change this p value to something more accurate
+    private String getRandomCustomerType()
+    {// TODO: Ratio of MTG to QZ may need to be changed
+        if (random.nextDouble() > 0.7)
             return "MTG";
         else
             return "QZ";

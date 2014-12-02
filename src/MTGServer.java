@@ -17,13 +17,13 @@ public class MTGServer extends ServerQueue
         ArrayDeque<Customer> queue = new ArrayDeque<>();
         for (Customer customer : customers)
         {
-            itemSelectionTime = 60; // TODO: Change hardcoded value of 60sec to a random selection time
+            itemSelectionTime = random.nextInt(300) + 60;   // 1 to 6 min
             QAT = customer.getSystemArrivalTime();
             QWT = previousQET - QAT;
             if (QWT < 0)
                 QWT = 0;
             SAT = QAT + QWT;
-            SWT = items * itemSelectionTime; // TODO: Change this to include how long it takes server to serve customer
+            SWT = items * random.nextInt(180) + 60;         // 1 to 4 min
             QET = SAT + SWT;
             previousQET = QET;
 

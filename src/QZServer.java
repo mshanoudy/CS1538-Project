@@ -16,12 +16,12 @@ public class QZServer extends ServerQueue
 
         for (Customer customer : customers)
         {
-            itemSelectionTime = 60; // TODO: Change hardcoded value of 60sec to a random selection time
-            items = 5;              // TODO: Change hardcoded value of 5 items to a random value
+            items = random.nextInt(10) + 1;     // Between 1 and 11
+            itemSelectionTime = calculateItemSelectionTime(items);
             QAT = customer.getSystemArrivalTime();
             QWT = 0;
             SAT = QAT + QWT;
-            SWT = itemSelectionTime * items;
+            SWT = itemSelectionTime;
             QET = SAT + SWT;
 
             customer.setItemTotal(items);
@@ -35,5 +35,15 @@ public class QZServer extends ServerQueue
         Collections.sort(customers);
 
         return new ArrayDeque<>(customers);
+    }
+
+    private int calculateItemSelectionTime(int items)
+    {
+        int total = 0;
+
+        for (int x = 0; x < items; x++)
+            total += random.nextInt(300) + 30; // 30sec to 5.5min per item
+
+        return total;
     }
 }

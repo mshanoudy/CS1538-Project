@@ -18,8 +18,7 @@ public class CheckoutServer extends ServerQueue
         {
             CQAT = customer.getCheckoutQueueArrivalTime();
             CQWT = previousCQET - CQAT;
-            if (CQWT < 0)
-                CQWT = 0;
+            if (CQWT < 0) CQWT = 0;
             CSAT = CQAT + CQWT;
             CSWT = customer.getItemTotal() * 30; // TODO Change hardcoded value of 30sec to a random processing time
             CQET = CSAT + CSWT;

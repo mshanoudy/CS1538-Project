@@ -20,8 +20,7 @@ public class MTGServer extends ServerQueue
             itemSelectionTime = random.nextInt(300) + 60;   // 1 to 6 min
             QAT = customer.getSystemArrivalTime();
             QWT = previousQET - QAT;
-            if (QWT < 0)
-                QWT = 0;
+            if (QWT < 0) QWT = 0;
             SAT = QAT + QWT;
             SWT = items * random.nextInt(180) + 60;         // 1 to 4 min
             QET = SAT + SWT;

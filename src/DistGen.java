@@ -92,9 +92,7 @@ public class DistGen
 		
 		return R;
 	}
-	
-	
-	
+
 	/**
      * Generates random numbers from the normal dist wil the specified mean and std
      * @param mean values will cluster around this
@@ -115,6 +113,23 @@ public class DistGen
 		
 		return value;
 	}
+	
+	
+	/**
+     * Generates random numbers from the uniform dist to check against a p value
+     * @param p the p value to check against
+     * 
+     * @return if(R <= p) true(qz), if R>p return false(mtg)
+     */
+	public boolean genBern(double p)
+	{
+		Random rg = new Random();
+		
+		return rg.nextDouble() <= p;
+	
+	}
+	
+	
 	
 	
 }

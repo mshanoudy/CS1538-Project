@@ -54,7 +54,7 @@ public class DistGen
 	 *
      * @return a single double from the exponential dist(if secs needed cast int)
      */
-	public static double genExp( double lambda, boolean unitFlag, double limiter)
+	public double genExp( double lambda, boolean unitFlag, double limiter)
 	{
 		boolean flag = false;				//Flag for generating a ran number in a range
 		
@@ -101,7 +101,7 @@ public class DistGen
      * @param stD the standard deviation
      * @return an int from the normal
      */
-	public static int genNormal( int mean, int stD)
+	public int genNormal( int mean, int stD)
 	{
 		Random rg = new Random();
 		

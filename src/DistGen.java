@@ -104,7 +104,7 @@ public class DistGen
      * @param stD the standard deviation
      * @return an int from the normal
      */
-	public int genNormal( int mean, int stD)
+	public int genNormal( double mean, double stD)
 	{
 
 		
@@ -186,7 +186,7 @@ public class DistGen
 		
 		}while( p > L);
 	
-		System.out.println( K-1.0);
+		//System.out.println( K-1.0);
 	
 		return K-1.0;
 		

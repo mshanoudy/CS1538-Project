@@ -55,7 +55,7 @@ public class SimulationEngine
 
         checkoutList = checkoutServer.processList();
 
-        saveToFile(checkoutList);
+       // saveToFile(checkoutList);
     }
 
 

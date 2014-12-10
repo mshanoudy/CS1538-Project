@@ -35,7 +35,7 @@ public class SimulationEngine
 
         MTGServer mtgServer = new MTGServer();
         QZServer  qzServer  = new QZServer();
-        CheckoutServer checkoutServer = new CheckoutServer();
+        CheckoutServer checkoutServer = new CheckoutServer(10);
 
         customers = createArrivalList(totalHours); // Populate customers list
 

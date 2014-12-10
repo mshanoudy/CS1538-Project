@@ -35,9 +35,10 @@ public class SimulationEngine
 
         MTGServer mtgServer = new MTGServer();
         QZServer  qzServer  = new QZServer();
-        CheckoutServer checkoutServer = new CheckoutServer();
+        CheckoutServer checkoutServer = new CheckoutServer(2);
 
         customers = createArrivalList(totalHours); // Populate customers list
+        System.out.println("Created a list of " + customers.size() + " customers.");
 
         for (Customer customer : customers)
         {// Send customers to respective servers, MTG or QZ

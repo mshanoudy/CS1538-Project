@@ -6,6 +6,11 @@ import java.util.*;
  */
 public class RandomGenerator extends Random
 {
+	public RandomGenerator()
+	{
+		super();
+	}
+
 	public RandomGenerator(long seed)
 	{
 		super(seed);

@@ -72,7 +72,7 @@ public class SimulationEngine
             Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("output.txt"), "utf-8"));
 
 
-            writer.write(String.format("%-8s %-8s %-8s %-8s %-8s %-8s %-8s %-8s %-8s %-8s %-8s %-8s %-8s %-8s %-8s %-8s %-8s\n\n",
+            writer.write(String.format("%-8s %-8s %-8s %-8s %-8s %-8s %-8s %-8s %-8s %-8s %-8s %-8s %-8s %-8s %-8s %-8s %-8s\n",
                              "INDEX", "TYPE", "ID", "SYS AT", "SELECT T", "LINE ID", "QAT", "QWT", "SAT", "SWT", "CLINE ID", "CQAT",
                              "CQWT", "CSAT", "CSWT", "SYS TT", "SYS ET"));
 

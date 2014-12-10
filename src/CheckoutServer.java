@@ -3,7 +3,7 @@ import java.util.Random;
 
 public class CheckoutServer extends ServerQueue
 {
-    public CheckoutServer(int numberOfServers)
+   public CheckoutServer(int numberOfServers)
     {
         random    = new Random();
         customers = new ArrayList<Customer>();

@@ -21,7 +21,7 @@ public class DistGen
 	}
 	
 	/**
-     * Generates random sorted arrival times from the possion process dist using exponential interarrival times in seconds
+     * Generates random sorted arrival times from the possion process dist using exponential interarrival times
      * The time is in seconds
      *
      * @param arrivalRate the arrival used to gen the random numbers
@@ -135,7 +135,7 @@ public class DistGen
 	}
 	
 	/**
-     * Generates arrival times following a poisson process using uniform interarrival times(USE THIS ONE!) in seconds
+     * Generates arrival times following a poisson process using uniform interarrival times(USE THIS ONE!)
      * @param arrivalRate the lambda
 	 * @param T The time period
      * 

@@ -48,7 +48,7 @@ public class RandomGenerator extends Random
 		int array[] = new int[n];
 
 		for (int x = 0; x < array.length; x++)
-			array[x] = (int)nextDouble() * T;
+			array[x] = nextInt(T);
 		Arrays.sort(array);
 
 		return array;

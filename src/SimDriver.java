@@ -12,6 +12,22 @@ public class SimDriver
 	public static void main(String args[])
 	{
 		SimulationEngine simulationEngine = new SimulationEngine();
-		simulationEngine.runSimulation(QZ_OPERATING_HOURS);
+		simulationEngine.runSimulation(1, 1, 2);
+		//simulationEngine.runSimulation(QZ_OPERATING_HOURS, 1, 2);
+
+/*		RandomGenerator randomGenerator = new RandomGenerator(1421897149542322L);
+
+		for (int x = 0; x < 60; x++)
+			System.out.print(randomGenerator.nextPoisson(3.52) + " ");
+		System.out.println();
+
+		int[] poissonProcess = randomGenerator.poissonProcess(60, 210);
+		for (Integer number : poissonProcess)
+			System.out.print(number + " ");
+		System.out.println();
+
+		for (int x = 0; x < 60; x++)
+			System.out.print(randomGenerator.nextGaussian(97.79, 79.80) + " ");
+		System.out.println();*/
 	}
 }

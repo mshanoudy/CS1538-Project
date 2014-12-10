@@ -166,7 +166,7 @@ public class SimulationEngine
             for (int minute = 0; minute < 60; minute++)
                 customersThisHour += randomGenerator.nextPoisson(ARRIVAL_RATE);
 
-            arrivalsThisHour  = randomGenerator.poissonProcess(60, customersThisHour);
+            arrivalsThisHour  = randomGenerator.poissonProcess(3600, customersThisHour);
 
             for (int index = 0; index < customersThisHour; index++)
             {

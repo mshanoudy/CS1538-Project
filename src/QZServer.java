@@ -27,6 +27,7 @@ public class QZServer extends ServerQueue
             customer.setItemTotal(items);
             customer.setItemSelectTime(itemSelectionTime);
             customer.setQueueArrivalTime(QAT);
+            customer.setQueueLineID(0);
             customer.setQueueWaitTime(QWT);
             customer.setServerArrivalTime(SAT);
             customer.setServiceWaitTime(SWT);

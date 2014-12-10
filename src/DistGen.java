@@ -1,23 +1,26 @@
-import java.io.*;
 import java.util.Random;
 import java.util.*;
 
 public class DistGen
 {
-	Random rg;
+	private Random random;
 	
 	/**
      * Default Constructor
      */
 	public DistGen()
 	{
-		rg = new Random();
+		random = new Random();
 	}
-	
+
+	/**
+	 * Constructor which accepts an RNG seed
+	 *
+	 * @param seed The initial seed
+	 */
 	public DistGen(long seed)
 	{
-		rg = new Random(seed);
-	
+		random = new Random(seed);
 	}
 	
 	/**
@@ -73,7 +76,7 @@ public class DistGen
 		//it will continue generating a random time unit untill it is in the range
 		while(true)
 		{
-			R = rg.nextDouble();
+			R = random.nextDouble();
 			
 			R = 1.0 - R;
 			
@@ -108,12 +111,12 @@ public class DistGen
 	{
 
 		
-		int value = (int)((rg.nextGaussian()*stD) + mean);
+		int value = (int)((random.nextGaussian()*stD) + mean);
 		
 		//Assumption: no 0 or negative items or time
 		while (value <= 0)
 		{
-			value = (int)((rg.nextGaussian()*stD) + mean);
+			value = (int)((random.nextGaussian()*stD) + mean);
 		}
 		
 		return value;
@@ -130,7 +133,7 @@ public class DistGen
 	{
 
 		
-		return rg.nextDouble() <= p;
+		return random.nextDouble() <= p;
 	
 	}
 	
@@ -151,7 +154,7 @@ public class DistGen
 		
 		for(int i=0; i < N; i++)
 		{		
-			arrivalTimes[i] = (int)(rg.nextDouble()*T);	
+			arrivalTimes[i] = (int)(random.nextDouble()*T);
 		}
 	
 		Arrays.sort(arrivalTimes);
@@ -180,7 +183,7 @@ public class DistGen
 		{
 			K = K +1.0;
 
-			p = p*rg.nextDouble();
+			p = p* random.nextDouble();
 			
 			//System.out.println(p);
 		
@@ -191,9 +194,4 @@ public class DistGen
 		return K-1.0;
 		
 	}
-	
-	
-	
-	
-	
 }

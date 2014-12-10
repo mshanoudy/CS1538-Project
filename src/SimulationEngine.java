@@ -26,19 +26,18 @@ public class SimulationEngine
      *
      * @param totalHours The total number of hours this simulation is to run for
      */
-    public void runSimulation(int totalHours)
+    public void runSimulation(int totalHours, int mtgServers, int checkoutServers)
     {
         ArrayList<Customer>  customers;     // List of customers as they arrive in system
         ArrayList<Customer>  checkoutList;  // List of customers as they leave the system
         ArrayDeque<Customer> mtgQueue;      // Processed queue from MTG
         ArrayDeque<Customer> qzQueue;       // Processed queue from QZ
 
-        MTGServer mtgServer = new MTGServer(2);
+        MTGServer mtgServer = new MTGServer();
         QZServer  qzServer  = new QZServer();
-        CheckoutServer checkoutServer = new CheckoutServer(2);
+        CheckoutServer checkoutServer = new CheckoutServer();
 
         customers = createArrivalList(totalHours); // Populate customers list
-        System.out.println("Created a list of " + customers.size() + " customers.");
 
         for (Customer customer : customers)
         {// Send customers to respective servers, MTG or QZ
@@ -48,15 +47,14 @@ public class SimulationEngine
                 qzServer.add(customer);
         }
 
-        mtgQueue = mtgServer.processQueue();
-        saveToFile(mtgServer.customers);
+        mtgQueue = mtgServer.processQueue(mtgServers);
         qzQueue  = qzServer.processQueue();
 
         checkoutServer.add(mergeQueues(mtgQueue, qzQueue)); // Merge queues into a a single list
 
-        checkoutList = checkoutServer.processList();
+        checkoutList = checkoutServer.processList(checkoutServers);
 
-       // saveToFile(checkoutList);
+        saveToFile(checkoutList);
     }
 
 
@@ -65,7 +63,7 @@ public class SimulationEngine
      *
      * @param customers The list of customers to print
      */
-    private void saveToFile(ArrayList<Customer> customers)
+    public void saveToFile(ArrayList<Customer> customers)
     {
         try
         {
@@ -214,6 +212,6 @@ public class SimulationEngine
     public static void main(String args[])
     {
         SimulationEngine simulationEngine = new SimulationEngine();
-        simulationEngine.runSimulation(1);
+        simulationEngine.runSimulation(1,1,2);
     }
 }

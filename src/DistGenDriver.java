@@ -9,41 +9,6 @@ public class DistGenDriver
 		DistGen testGen2 = new DistGen();
 		double test2;
 		
-		
-		///////////////////////////////////////////////////////////////
-		// ArrayList<Integer> allArrivalTimes = new ArrayList<Integer>();
-		
-		// int hours = 1;
-		
-		// int totalMins = hours*60;
-		
-		// int[] test = new int[0];
-		
-		// boolean done = false; 
-		
-		// for(int x = 0; x < totalMins; x++)
-		// {
-			// test = testGen.genPoissonProc2(3.52, 60.0);
-			
-			// for(int i = 0; i < test.length; i++)
-			// {
-				// allArrivalTimes.add(test[i]+ (x*60));	
-					
-			// }
-		// }
-		
-		// for(int i = 0; i < allArrivalTimes.size(); i++)
-		// {
-			// System.out.println(allArrivalTimes.get(i));
-		// }
-		
-		
-		//////////////////////////////////////////////////////////////
-		
-		////// Poisson processs arrival times lambda 3.52 per min
-		//// Normal item selecet dist mean = 97.78 secs std = 79.8 secs
-		/// Check out server times mean 12.02 std = 5.69 secs
-		
 		///Poisson
 		PrintWriter writer = new PrintWriter("PossionDistOut.csv", "UTF-8");
 		

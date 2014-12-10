@@ -7,10 +7,12 @@ public class Customer implements Comparable<Customer>
     private int itemTotal;
     private int itemSelectTime;
     private int queueArrivalTime;
+    private int queueLineID;
     private int queueWaitTime;
     private int serverArrivalTime;
     private int serviceWaitTime;
     private int checkoutQueueArrivalTime;
+    private int checkoutQueueLineID;
     private int checkoutQueueWaitTime;
     private int checkoutServerArrivalTime;
     private int checkoutServiceWaitTime;
@@ -178,5 +180,23 @@ public class Customer implements Comparable<Customer>
         this.systemExitTime = systemExitTime;
     }
 
+    public int getQueueLineID()
+    {
+        return queueLineID;
+    }
 
+    public void setQueueLineID(int queueLineID)
+    {
+        this.queueLineID = queueLineID;
+    }
+
+    public int getCheckoutQueueLineID()
+    {
+        return checkoutQueueLineID;
+    }
+
+    public void setCheckoutQueueLineID(int checkoutQueueLineID)
+    {
+        this.checkoutQueueLineID = checkoutQueueLineID;
+    }
 }

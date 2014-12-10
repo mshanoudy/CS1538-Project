@@ -5,20 +5,12 @@ public class ServerQueue
 {
     protected Random random;
     protected ArrayList<Customer> customers;
-    protected int numberOfServers;
+
 
     public ServerQueue()
     {
         random    = new Random();
-        customers = new ArrayList<Customer>();
-        numberOfServers = 1;
-    }
-
-    public ServerQueue(int numberOfServers)
-    {
-        random    = new Random();
-        customers = new ArrayList<Customer>();
-        this.numberOfServers = numberOfServers;
+        customers = new ArrayList<>();
     }
 
     public void add(Customer customer)
@@ -29,5 +21,26 @@ public class ServerQueue
     public void add(ArrayList<Customer> customers)
     {
         this.customers = customers;
+    }
+
+    protected int[] initializeArray(int size, int value)
+    {
+        int array[] = new int[size];
+
+        for (int index = 0; index < array.length; index++)
+            array[index] = value;
+
+        return array;
+    }
+
+    protected int checkQueueWait(int[] previous)
+    {
+        int shortest = 0;
+
+        for (int index = 0; index < previous.length; index++)
+            if (previous[index] < previous[shortest])
+                shortest = index;
+
+        return shortest;
     }
 }

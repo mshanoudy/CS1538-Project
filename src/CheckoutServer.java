@@ -30,9 +30,8 @@ public class CheckoutServer extends ServerQueue
                 {
                     smallestLineSize = lineSize;
                     serverID = i;
-                    System.out.println("ID Updated, linesize" + lineSize + " ");
+                    System.out.println("ID Updated, CID + CAT " + customer.getID() + " " + customer.getCheckoutQueueArrivalTime() + " ");
                 }
-                System.out.println("CID, Server ID: " + customer.getID() + " " + serverID);
             }
             checkoutServers[serverID].processCustomer(customer);
             list.add(customer);
@@ -69,7 +68,7 @@ class CheckoutServerIndividual
         while(index >= 0)
         {
             Customer customer = listIndividual.get(index);
-            CQETCurr = customer.getCheckoutQueueArrivalTime() + customer.getCheckoutQueueWaitTime();
+            CQETCurr = customer.getCheckoutServerArrivalTime() + customer.getCheckoutServiceWaitTime();
             if(CQETCurr > arrivalTime)
                 numberInLine++;
             else

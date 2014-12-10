@@ -3,13 +3,14 @@ import java.util.Random;
 
 public class ServerQueue
 {
-    protected Random random;
-    protected ArrayList<Customer> customers;
+    protected final long SEED = 1421897149542322L;
 
+    protected RandomGenerator randomGenerator;
+    protected ArrayList<Customer> customers;
 
     public ServerQueue()
     {
-        random    = new Random();
+        randomGenerator = new RandomGenerator(SEED);
         customers = new ArrayList<>();
     }
 

@@ -72,8 +72,8 @@ public class SimulationEngine
             Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("output.txt"), "utf-8"));
 
 
-            writer.write(String.format("%-8s %-8s %-8s %-8s %-8s %-8s %-8s %-8s %-8s %-8s %-8s %-8s %-8s %-8s %-8s %-8s\n\n",
-                             "INDEX", "TYPE", "ID", "SYS AT", "# ITEMS", "SELECT T", "QAT", "QWT", "SAT", "SWT", "CQAT",
+            writer.write(String.format("%-8s %-8s %-8s %-8s %-8s %-8s %-8s %-8s %-8s %-8s %-8s %-8s %-8s %-8s %-8s %-8s %-8s\n\n",
+                             "INDEX", "TYPE", "ID", "SYS AT", "SELECT T", "LINE ID", "QAT", "QWT", "SAT", "SWT", "CLINE ID", "CQAT",
                              "CQWT", "CSAT", "CSWT", "SYS TT", "SYS ET"));
 
             int index = 0;
@@ -82,12 +82,13 @@ public class SimulationEngine
                 String type  = customer.getType();
                 int ID       = customer.getID();
                 int sysAT    = customer.getSystemArrivalTime();
-                int items    = customer.getItemTotal();
+                int lineID   = customer.getQueueLineID();
                 int select   = customer.getItemSelectTime();
                 int QAT      = customer.getQueueArrivalTime();
                 int QWT      = customer.getQueueWaitTime();
                 int SAT      = customer.getServerArrivalTime();
                 int SWT      = customer.getServiceWaitTime();
+                int CLineID  = customer.getCheckoutQueueLineID();
                 int CQAT     = customer.getCheckoutQueueArrivalTime();
                 int CQWT     = customer.getCheckoutQueueWaitTime();
                 int CSAT     = customer.getCheckoutServerArrivalTime();
@@ -95,8 +96,8 @@ public class SimulationEngine
                 int sysTT    = customer.getSystemTotalTime();
                 int sysET    = customer.getSystemExitTime();
 
-                writer.write(String.format("%-8d %-8s %-8d %-8d %-8d %-8d %-8d %-8d %-8d %-8d %-8d %-8d %-8d %-8d %-8d %-8d\n",
-                                 index, type, ID, sysAT, items, select, QAT, QWT, SAT, SWT, CQAT, CQWT, CSAT, CSWT, sysTT, sysET));
+                writer.write(String.format("%-8d %-8s %-8d %-8d %-8d %-8d %-8d %-8d %-8d %-8d %-8d %-8d %-8d %-8d %-8d %-8d %-8d\n",
+                                 index, type, ID, sysAT, select, lineID, QAT, QWT, SAT, SWT, CLineID, CQAT, CQWT, CSAT, CSWT, sysTT, sysET));
 
                 index++;
             }

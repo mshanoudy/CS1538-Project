@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     96688,       2222]
-NotebookOptionsPosition[     94066,       2129]
-NotebookOutlinePosition[     94407,       2144]
-CellTagsIndexPosition[     94364,       2141]
+NotebookDataLength[     97046,       2233]
+NotebookOptionsPosition[     94404,       2139]
+NotebookOutlinePosition[     94745,       2154]
+CellTagsIndexPosition[     94702,       2151]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -2125,7 +2125,17 @@ Axy0IZQ2QqONcdAmUNoUSptBaWs4DQBXAxb5
   SelectWithContents->True,
   Selectable->False]], "Output",
  CellChangeTimes->{3.6271747515358543`*^9}]
-}, Open  ]]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"normalCheckOut", "=", 
+   RowBox[{"Import", "[", 
+    RowBox[{
+    "\"\<D:\\\\School\\\\CS1538-Project\\\\NormalCheckOut.txt\>\"", ",", 
+     "\"\<Data\>\""}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.6271769657585*^9, 3.627177050952373*^9}, {
+  3.627177086060381*^9, 3.6271771135029507`*^9}}]
 },
 WindowSize->{1904, 1008},
 WindowMargins->{{0, Automatic}, {Automatic, 0}},
@@ -2152,7 +2162,7 @@ Cell[CellGroupData[{
 Cell[2843, 82, 169, 3, 31, "Input"],
 Cell[3015, 87, 1308, 28, 182, "Output"]
 }, Open  ]],
-Cell[4338, 118, 498, 14, 52, InheritFromParent],
+Cell[4338, 118, 498, 14, 52, "Input"],
 Cell[CellGroupData[{
 Cell[4861, 136, 167, 3, 31, "Input"],
 Cell[5031, 141, 1640, 34, 240, "Output"]
@@ -2174,7 +2184,7 @@ Cell[CellGroupData[{
 Cell[19933, 492, 345, 5, 31, "Input"],
 Cell[20281, 499, 195, 4, 31, "Output"]
 }, Open  ]],
-Cell[20491, 506, 94, 1, 31, InheritFromParent],
+Cell[20491, 506, 94, 1, 31, "Input"],
 Cell[20588, 509, 432, 11, 31, "Input"],
 Cell[CellGroupData[{
 Cell[21045, 524, 586, 15, 72, "Input"],
@@ -2223,10 +2233,10 @@ Cell[81879, 1845, 87, 1, 31, "Output"]
 Cell[CellGroupData[{
 Cell[82003, 1851, 315, 6, 31, "Input"],
 Cell[82321, 1859, 11729, 267, 207, "Output"]
-}, Open  ]]
+}, Open  ]],
+Cell[94065, 2129, 335, 8, 31, "Input"]
 }
 ]
 *)
 
 (* End of internal cache information *)
-

@@ -4,16 +4,24 @@ import java.util.*;
 
 public class DistGen
 {
+	Random rg;
+	
 	/**
      * Default Constructor
      */
 	public DistGen()
 	{
-		
+		rg = new Random();
+	}
+	
+	public DistGen(long seed)
+	{
+		rg = new Random(seed);
+	
 	}
 	
 	/**
-     * Generates random sorted arrival times from the possion dist
+     * Generates random sorted arrival times from the possion process dist using exponential interarrival times
      * The time is in seconds
      *
      * @param arrivalRate the arrival used to gen the random numbers
@@ -57,9 +65,6 @@ public class DistGen
 	public double genExp( double lambda, boolean unitFlag, double limiter)
 	{
 		boolean flag = false;				//Flag for generating a ran number in a range
-		
-		
-		Random rg = new Random();
 		double R;
 		double RSec;
 				
@@ -101,7 +106,7 @@ public class DistGen
      */
 	public int genNormal( int mean, int stD)
 	{
-		Random rg = new Random();
+
 		
 		int value = (int)((rg.nextGaussian()*stD) + mean);
 		
@@ -123,11 +128,70 @@ public class DistGen
      */
 	public boolean genBern(double p)
 	{
-		Random rg = new Random();
+
 		
 		return rg.nextDouble() <= p;
 	
 	}
+	
+	/**
+     * Generates arrival times following a poisson process using uniform interarrival times(USE THIS ONE!)
+     * @param arrivalRate the lambda
+	 * @param T The time period
+     * 
+     * @return arrival times in the specified time period
+     */
+	public int[] genPoissonProc2(double arrivalRate, double T)
+	{
+		//ArrayList<Integer> arrivalTimes =  new ArrayList<Integer>();
+		
+		double N = genPoissonDist(arrivalRate,T);
+		
+		int[] arrivalTimes = new int[(int)N];
+		
+		for(int i=0; i < N; i++)
+		{		
+			arrivalTimes[i] = (int)(rg.nextDouble()*T);	
+		}
+	
+		Arrays.sort(arrivalTimes);
+		
+		return arrivalTimes;
+	}
+	
+	/**
+     * Generates random number of arrivals from the poisson dist
+     * @param arrivalRate the lambda
+	 * @param T The time period
+     * 
+     * @return the number of arrivals in that time period
+     */
+	public double genPoissonDist(double arrivalRate, double T)
+	{
+		
+		double L = Math.exp(-1.0*arrivalRate);
+		double K = 0.0;
+		
+		double p = 1.0;
+		
+		//System.out.println(L);
+		
+		do
+		{
+			K = K +1.0;
+
+			p = p*rg.nextDouble();
+			
+			//System.out.println(p);
+		
+		}while( p > L);
+	
+		System.out.println( K-1.0);
+	
+		return K-1.0;
+		
+	}
+	
 	
 	
 	

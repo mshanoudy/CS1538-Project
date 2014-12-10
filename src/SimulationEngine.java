@@ -33,7 +33,7 @@ public class SimulationEngine
         ArrayDeque<Customer> mtgQueue;      // Processed queue from MTG
         ArrayDeque<Customer> qzQueue;       // Processed queue from QZ
 
-        MTGServer mtgServer = new MTGServer();
+        MTGServer mtgServer = new MTGServer(2);
         QZServer  qzServer  = new QZServer();
         CheckoutServer checkoutServer = new CheckoutServer(2);
 
@@ -49,6 +49,7 @@ public class SimulationEngine
         }
 
         mtgQueue = mtgServer.processQueue();
+        saveToFile(mtgServer.customers);
         qzQueue  = qzServer.processQueue();
 
         checkoutServer.add(mergeQueues(mtgQueue, qzQueue)); // Merge queues into a a single list

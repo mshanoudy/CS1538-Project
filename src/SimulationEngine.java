@@ -167,6 +167,10 @@ public class SimulationEngine
             for (int minute = 0; minute < 60; minute++)
                 customersThisHour += randomGenerator.nextPoisson(ARRIVAL_RATE);
 
+            // Is it lunch time?
+            if (hour >= 2 && hour <= 4)
+                customersThisHour *= 2;
+
             arrivalsThisHour  = randomGenerator.poissonProcess(3600, customersThisHour);
 
             for (int index = 0; index < customersThisHour; index++)

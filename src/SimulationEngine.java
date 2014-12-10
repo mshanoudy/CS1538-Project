@@ -10,15 +10,17 @@ import java.util.Random;
 public class SimulationEngine
 {
     private final int SECONDS_IN_HOUR = 3600;
+    private final long SEED = 1421897149542322L;
+    private final double ARRIVAL_RATE = 3.52;    // per min
 
-    private Random random;
+    private RandomGenerator randomGenerator;
 
     /**
      * Default Constructor
      */
     public SimulationEngine()
     {
-        random = new Random();
+        randomGenerator = new RandomGenerator(SEED);
     }
 
     /**
@@ -151,9 +153,9 @@ public class SimulationEngine
      * @return An ArrayList containing the list of customers by arrival time for some number of hours
      */
     private ArrayList<Customer> createArrivalList(int totalHours)
-    {// TODO: The number of customers per hour is currently uniformly distributed, may need changing
+    {
         int customerID = 0;
-        int customersThisHour;
+        int customersThisHour = 0;
         int arrivalsThisHour[];
         Customer currentCustomer;
 
@@ -161,39 +163,30 @@ public class SimulationEngine
 
         for (int hour = 0; hour < totalHours; hour++)
         {
-            customersThisHour = random.nextInt(100) + 50;
-            arrivalsThisHour  = createArrivalTimesThisHour(customersThisHour);
+            for (int minute = 0; minute < 60; minute++)
+                customersThisHour += randomGenerator.nextPoisson(ARRIVAL_RATE);
+
+            arrivalsThisHour  = randomGenerator.poissonProcess(60, customersThisHour);
 
             for (int index = 0; index < customersThisHour; index++)
             {
                 currentCustomer = new Customer(customerID);
-                currentCustomer.setType(getRandomCustomerType());
+
+                // Is MTG open?
+                if (hour >= 2 && hour <= 9)
+                    currentCustomer.setType(getRandomCustomerType());
+                else
+                    currentCustomer.setType("QZ");
+
                 currentCustomer.setSystemArrivalTime((hour * SECONDS_IN_HOUR) + arrivalsThisHour[index]);
                 customerArrayList.add(currentCustomer);
                 customerID++;
             }
+
+            customersThisHour = 0;
         }
 
         return customerArrayList;
-    }
-
-    /**
-     * Creates an array of arrival times relative to an hour
-     * Assumes the starting time of this hour is 0
-     *
-     * @param customersThisHour The number of customers within this hour
-     *
-     * @return Array of arrival times relative to an hour
-     */
-    private int[] createArrivalTimesThisHour(int customersThisHour)
-    {// TODO: Arrival times are currently generated using a uniform distribution, may need changing
-        int arrivalTimes[] = new int[customersThisHour];
-
-        for (int x = 0; x < customersThisHour; x++)
-            arrivalTimes[x] = random.nextInt(SECONDS_IN_HOUR);
-        Arrays.sort(arrivalTimes);
-
-        return arrivalTimes;
     }
 
     /**
@@ -202,8 +195,8 @@ public class SimulationEngine
      * @return The type of customer
      */
     private String getRandomCustomerType()
-    {// TODO: Ratio of MTG to QZ may need to be changed
-        if (random.nextDouble() > 0.7)
+    {
+        if (randomGenerator.nextDouble() > 0.69)
             return "MTG";
         else
             return "QZ";

@@ -3,6 +3,9 @@ import java.util.Collections;
 
 public class QZServer extends ServerQueue
 {
+    private final double MEAN    = 97.79;
+    private final double STD_DEV = 79.80;
+
     public ArrayDeque<Customer> processQueue()
     {
         int QAT;    // Queue arrival time
@@ -16,15 +19,13 @@ public class QZServer extends ServerQueue
 
         for (Customer customer : customers)
         {
-            items = random.nextInt(10) + 1;     // Between 1 and 11
-            itemSelectionTime = calculateItemSelectionTime(items);
+            itemSelectionTime = randomGenerator.nextGaussian(MEAN, STD_DEV); // Selection time is normally distributed
             QAT = customer.getSystemArrivalTime();
             QWT = 0;
             SAT = QAT + QWT;
             SWT = itemSelectionTime;
             QET = SAT + SWT;
 
-            customer.setItemTotal(items);
             customer.setItemSelectTime(itemSelectionTime);
             customer.setQueueArrivalTime(QAT);
             customer.setQueueLineID(0);
@@ -36,15 +37,5 @@ public class QZServer extends ServerQueue
         Collections.sort(customers);
 
         return new ArrayDeque<>(customers);
-    }
-
-    private int calculateItemSelectionTime(int items)
-    {
-        int total = 0;
-
-        for (int x = 0; x < items; x++)
-            total += random.nextInt(300) + 30; // 30sec to 5.5min per item
-
-        return total;
     }
 }

@@ -45,7 +45,7 @@ public class DistGenDriver
 		/// Check out server times mean 12.02 std = 5.69 secs
 		
 		///Poisson
-		PrintWriter writer = new PrintWriter("PossionDistOut.txt", "UTF-8");
+		PrintWriter writer = new PrintWriter("PossionDistOut.csv", "UTF-8");
 		
 		
 		ArrayList<Integer> allArrivalTimes = new ArrayList<Integer>();
@@ -69,35 +69,38 @@ public class DistGenDriver
 			}
 		}
 		
-		for(int i = 0; i < allArrivalTimes.size(); i++)
+		for(int i = 0; i < allArrivalTimes.size()-1; i++)
 		{
-			writer.println(allArrivalTimes.get(i));
+			writer.print(allArrivalTimes.get(i) + ",");
 		}
+		writer.print(allArrivalTimes.get(allArrivalTimes.size()-1));
 		
 		writer.close();
 		////////////////
 		
 		
 		////// Item selection
-		PrintWriter writer2 = new PrintWriter("NormalItemSelect.txt", "UTF-8");
+		PrintWriter writer2 = new PrintWriter("NormalItemSelect.csv", "UTF-8");
 		
 		int runCount = 1000;
 		
-		for(int x = 0; x < runCount; x++)
+		for(int x = 0; x < runCount-1; x++)
 		{
-			writer2.println(testGen.genNormal( 97.78, 79.8));
+			writer2.print(testGen.genNormal(97.78, 79.8) + ".,");
 		}
+		writer2.print(testGen.genNormal( 97.78, 79.8));
 		writer2.close();
 		///////
 		
 		
 		///Check out selection 
-		PrintWriter writer3 = new PrintWriter("NormalCheckOut.txt", "UTF-8");
+		PrintWriter writer3 = new PrintWriter("NormalCheckOut.csv", "UTF-8");
 		
 		for(int x = 0; x < runCount; x++)
 		{
-			writer3.println(testGen.genNormal( 12.02, 5.69));
+			writer3.print(testGen.genNormal(12.02, 5.69) + ".,");
 		}
+		writer3.print(testGen.genNormal( 12.02, 5.69));
 		
 		writer3.close();
 		////

@@ -62,18 +62,26 @@ public class DistGenDriver
 		{
 			test = testGen.genPoissonProc2(3.52, 60.0);
 			
-			for(int i = 0; i < test.length; i++)
-			{
-				allArrivalTimes.add(test[i]+ (x*60));	
+			// for(int i = 0; i < test.length; i++)
+			// {
+				// allArrivalTimes.add(test[i]+ (x*60));	
 					
+			// }
+			
+			writer.print(test.length);
+			
+			if(x < totalMins -1)
+			{
+				writer.print(",");
 			}
+			System.out.println(x);
 		}
 		
-		for(int i = 0; i < allArrivalTimes.size()-1; i++)
-		{
-			writer.print(allArrivalTimes.get(i) + ",");
-		}
-		writer.print(allArrivalTimes.get(allArrivalTimes.size()-1));
+		// for(int i = 0; i < allArrivalTimes.size()-1; i++)
+		// {
+			// writer.print(allArrivalTimes.get(i) + ",");
+		// }
+		// writer.print(allArrivalTimes.get(allArrivalTimes.size()-1));
 		
 		writer.close();
 		////////////////

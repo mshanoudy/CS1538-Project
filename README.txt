@@ -22,6 +22,7 @@ Relevant File name(s):
 	- DistributionTest.nb--file with results of checking observable data dists. using Mathematica
 	- Experimental-Results.xlsx--file that has the important stat results
 	- Experiments.xlsx--file containg the different outputed results from the differen expirment runs
+	- Experiments(1hour).xlsx--file containg the expeirments for a one hour time period
 	- RAW-DATA.xlsx--File containing our observable data
 -src--Contains all of the java source files for the simulation(run the simulation inside this folder)
 	- CheckoutServer.java
